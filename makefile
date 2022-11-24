@@ -25,15 +25,15 @@ loopd:
 
 mains:
 	make loops
-	gcc -o main main.c libclassloops.a
+	gcc -o mains main.c libclassloops.a
 
 maindloop:
 	make loopd
-	gcc -o main main.c libclassloops.so
+	gcc -o maindloop main.c libclassloops.so
 
 maindrec:
 	make recursived
-	gcc -o main main.c libclassrec.so
+	gcc -o maindrec main.c libclassrec.so
 
 clean:
 	rm -v !(*.c|*.h|*.txt)
