@@ -3,8 +3,11 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]){
-    int min = atoi(argv[1]);
-    int max = atoi(argv[2]);
+    int min = 0;
+    int max = 0;
+    
+    scanf("%d", &min);
+    scanf("%d", &max);
     
     if(min > max){
         int temp = min;
