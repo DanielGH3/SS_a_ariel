@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "NumClass.h"
 
-int main(int argc, char *argv[]){
+int main(){
     int min = 0;
     int max = 0;
     
