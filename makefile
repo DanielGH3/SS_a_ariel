@@ -16,7 +16,7 @@ mains: libclassrec.a
 	gcc -o mains main.c libclassrec.a
 	
 maindloop: libclassloops.so
-	gcc -Wall -o maindloop main.c libclassrec.so
+	gcc -Wall -o maindloop main.c libclassloops.so
 	
 maindrec: libclassrec.so
 	gcc -Wall -o maindrec main.c libclassrec.so
