@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include "NumClass.h"
+#include <stdlib.h>
 
-int main(){
-    int min = 0;
-    int max = 1000;
+int main(int argc, char *argv[]){
+    int min = atoi(argv[1]);
+    int max = atoi(argv[2]);
     
     if(min > max){
         int temp = min;
