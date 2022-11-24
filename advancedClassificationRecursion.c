@@ -45,6 +45,7 @@ int reverse(int n){
 
 //x^a
 int myPow(int x, int a){
-    if(a == 0 || a == 1) return 1;
+    if(a == 0) return 1;
+    if(a == 1) return x;
     return x * myPow(x, a - 1);
 }
