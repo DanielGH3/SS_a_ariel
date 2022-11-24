@@ -6,10 +6,12 @@ all:
 	gcc -Wall -c $(BASIC).c
 	gcc -Wall -c $(LOOP).c
 	gcc -Wall -c $(RECUR).c
+	
 	ar -rc libclassloops.a $(BASIC).o $(LOOP).o
 	ar -rc libclassrec.a $(BASIC).o $(RECUR).o
 	gcc -o mains main.c libclassloops.a
 		
+	export LD_LIBRARY_PATH=.	
 	gcc -c -Wall -Werror -fpic $(BASIC).c $(RECUR).c
 	gcc -c -Wall -Werror -fpic $(BASIC).c $(LOOP).c
 	gcc -shared -o libclassrec.so $(BASIC).o $(RECUR).o
@@ -26,10 +28,12 @@ recursives:
 	ar -rc libclassrec.a $(BASIC).o $(RECUR).o
 
 recursived:
+	export LD_LIBRARY_PATH=.
 	gcc -c -Wall -Werror -fpic $(BASIC).c $(RECUR).c
 	gcc -shared -o libclassrec.so $(BASIC).o $(RECUR).o
 	
 loopd:
+	export LD_LIBRARY_PATH=.
 	gcc -c -Wall -Werror -fpic $(BASIC).c $(LOOP).c
 	gcc -shared -o libclassloops.so $(BASIC).o $(LOOP).o
 
