@@ -2,49 +2,47 @@ BASIC = basicClassification
 LOOP = advancedClassificationLoop
 RECUR = advancedClassificationRecursion
 
-all:
+all: mains maindloop maindrec loops
+
+loops: libclassloops.a
+	
+recursives: libclassrec.a
+	
+recursived:  libclassrec.so
+	
+loopd:  libclassloops.so
+	
+mains: libclassrec.a
+	gcc -o mains main.c libclassrec.a
+	
+maindloop: libclassloops.so
+	gcc -Wall -o maindloop main.c libclassrec.so
+	
+maindrec: libclassrec.so
+	gcc -Wall -o maindrec main.c libclassrec.so
+	
+libclassrec.so: $(BASIC).c $(RECUR).c
+	gcc -c -Wall -Werror -fpic $(BASIC).c $(RECUR).c
+	gcc -shared -Wall $(BASIC).o $(RECUR).o -o libclassrec.so
+
+libclassloops.so: $(BASIC).c $(LOOP).c
+	gcc -c -Wall -Werror -fpic $(BASIC).c $(LOOP).c
+	gcc -shared -Wall $(BASIC).o $(LOOP).o -o libclassloops.so
+
+libclassrec.a: $(BASIC).o $(RECUR).o
+	ar -rc libclassrec.a $(BASIC).o $(RECUR).o
+
+libclassloops.a: $(BASIC).o $(LOOP).o
+	ar -rc libclassloops.a $(BASIC).o $(LOOP).o
+
+basicClassification.o: $(BASIC).c
 	gcc -Wall -c $(BASIC).c
+	
+advancedClassificationLoop.o: $(LOOP).c
 	gcc -Wall -c $(LOOP).c
+	
+advancedClassificationRecursion.o: $(RECUR).c
 	gcc -Wall -c $(RECUR).c
 	
-	ar -rc libclassloops.a $(BASIC).o $(LOOP).o
-	ar -rc libclassrec.a $(BASIC).o $(RECUR).o
-	gcc -o mains main.c libclassloops.a
-		
-	gcc -c -Wall -Werror -fpic $(BASIC).c $(RECUR).c
-	gcc -c -Wall -Werror -fpic $(BASIC).c $(LOOP).c
-	gcc -shared -o libclassrec.so $(BASIC).o $(RECUR).o
-	gcc -shared -o libclassloops.so $(BASIC).o $(LOOP).o
-	gcc -o maindloop main.c libclassloops.so
-	gcc -o maindrec main.c libclassrec.so
-
-loops:
-	gcc -Wall -c $(BASIC).c $(LOOP).c
-	ar -rc libclassloops.a $(BASIC).o $(LOOP).o
-
-recursives:
-	gcc -Wall -c $(BASIC).c $(RECUR).c
-	ar -rc libclassrec.a $(BASIC).o $(RECUR).o
-
-recursived:
-	gcc -c -Wall -Werror -fpic $(BASIC).c $(RECUR).c
-	gcc -shared -o libclassrec.so $(BASIC).o $(RECUR).o
-	
-loopd:
-	gcc -c -Wall -Werror -fpic $(BASIC).c $(LOOP).c
-	gcc -shared -o libclassloops.so $(BASIC).o $(LOOP).o
-
-mains:
-	make loops
-	gcc -o mains main.c libclassloops.a
-
-maindloop:
-	make loopd
-	gcc -o maindloop main.c libclassloops.so
-
-maindrec:
-	make recursived
-	gcc -o maindrec main.c libclassrec.so
-
 clean:
-	rm -v !(*.c|*.h|*.txt)
+	
