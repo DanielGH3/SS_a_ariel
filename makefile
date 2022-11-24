@@ -8,6 +8,9 @@ all:
 	gcc -Wall -c $(RECUR).c
 	ar -rc libclassloops.a $(BASIC).o $(LOOP).o
 	ar -rc libclassrec.a $(BASIC).o $(RECUR).o
+	
+	gcc -c -Wall -Werror -fpic $(BASIC).c $(RECUR).c
+	gcc -c -Wall -Werror -fpic $(BASIC).c $(LOOP).c
 	gcc -shared -o libclassrec.so $(BASIC).o $(RECUR).o
 	gcc -shared -o libclassloops.so $(BASIC).o $(LOOP).o
 	gcc -o mains main.c libclassloops.a
