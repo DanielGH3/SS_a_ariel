@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
     }
     
     FILE *f;
-    f = fopen (argv[3], "mode");
+    f = fopen (argv[3], "w");
     
     fprintf(f, "The Armstrong numbers are:");
     for(int i = min; i <= max; i++){
