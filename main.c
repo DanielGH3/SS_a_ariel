@@ -12,34 +12,31 @@ int main(int argc, char *argv[]){
         max = temp;
     }
     
-    FILE *f;
-    f = fopen (argv[3], "w");
-    
-    fprintf(f, "The Armstrong numbers are:");
+    printf("The Armstrong numbers are:");
     for(int i = min; i <= max; i++){
         if(isArmstrong(i)){
-            fprintf(f, " %d", i);
+            printf(" %d", i);
         }
     }
 
-    fprintf(f, "\nThe Palindromes are:");
+    printf("\nThe Palindromes are:");
     for(int i = min; i <= max; i++){
         if(isPalindrome(i)){
-            fprintf(f, " %d", i);
+            printf(" %d", i);
         }
     }   
 
-    fprintf(f, "\nThe Prime numbers are:");
+    printf("\nThe Prime numbers are:");
     for(int i = min; i <= max; i++){
         if(isPrime(i)){
-            fprintf(f, " %d", i);
+            printf(" %d", i);
         }
     }    
 
-    fprintf(f, "\nThe Strong numbers are:");
+    printf("\nThe Strong numbers are:");
     for(int i = min; i <= max; i++){
         if(isStrong(i)){
-            fprintf(f, " %d", i);
+            printf(" %d", i);
         }
     }
 
