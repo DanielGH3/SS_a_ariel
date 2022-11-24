@@ -45,4 +45,5 @@ advancedClassificationRecursion.o: $(RECUR).c
 	gcc -Wall -c $(RECUR).c
 	
 clean:
+	find . -type f -not \( -name '*.c' -or -name '*.h' -or -name '*.txt' -or -name 'makefile' \) -delete    
 	
