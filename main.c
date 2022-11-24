@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "NumClass.h"
-#include <stdlib.h>
 
 int main(int argc, char *argv[]){
     int min = 0;
