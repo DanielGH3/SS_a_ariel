@@ -28,9 +28,11 @@ mains:
 	gcc -o main main.c libclassloops.a
 
 maindloop:
+	make loopd
 	gcc -o main main.c libclassloops.so
 
 maindrec:
+	make recursived
 	gcc -o main main.c libclassrec.so
 
 clean:
