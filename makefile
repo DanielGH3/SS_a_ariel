@@ -1,0 +1,37 @@
+BASIC = basicClassification
+LOOP = advancedClassificationLoop
+RECUR = advancedClassificationRecursion
+
+all:
+	gcc -Wall -c $(BASIC).c
+	gcc -Wall -c $(LOOP).c
+	gcc -Wall -c $(RECUR).c
+
+loops:
+	gcc -Wall -c $(BASIC).c $(LOOP).c
+	ar -rc libclassloops.a $(BASIC).o $(LOOP).o
+
+recursives:
+	gcc -Wall -c $(BASIC).c $(RECUR).c
+	ar -rc libclassrec.a $(BASIC).o $(RECUR).o
+
+recursived:
+	gcc -c -Wall -Werror -fpic $(BASIC).c $(RECUR).c
+	gcc -shared -o libclassrec.so $(BASIC).o $(RECUR).o
+	
+loopd:
+	gcc -c -Wall -Werror -fpic $(BASIC).c $(LOOP).c
+	gcc -shared -o libclassloops.so $(BASIC).o $(LOOP).o
+
+mains:
+	make loops
+	gcc -o main main.c libclassloops.a
+
+maindloop:
+	gcc -o main main.c libclassloops.so
+
+maindrec:
+	gcc -o main main.c libclassrec.so
+
+clean:
+	rm -v !(*.c|*.h|*.txt)
